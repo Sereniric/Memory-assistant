@@ -1,22 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Remember</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
 </head>
 
 <body>
 
-    <h1>Remember this sequence</h1>
+    <main class="game-container">
 
-    <h2>
-        {% for number in sequence %}
-            {{ number }}
-        {% endfor %}
-    </h2>
+        <section class="game-card">
 
-    <a href="/game/answer">
-        I'm Ready
-    </a>
+            <h1 class="game-title">
+                Remember This
+            </h1>
+
+            <p class="difficulty">
+                {{ difficulty|upper }}
+            </p>
+
+            <div class="sequence">
+
+                {% for number in sequence %}
+                    {{ number }}
+                {% endfor %}
+
+            </div>
+
+            <p class="game-subtitle">
+                Remember the numbers in this exact order.
+            </p>
+
+            <a
+                href="{{ url_for('games.answer') }}"
+                class="btn"
+            >
+                I'm Ready
+            </a>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

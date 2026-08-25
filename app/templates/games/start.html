@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sequence Recall</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
 </head>
 
 <body>
 
-    <h1> Sequence Recall</h1>
+    <main class="game-container">
 
-    <p>
-        Remember the numbers in the correct order.
-    </p>
+        <section class="game-card">
 
-    <a href="/game/remember">
-        Start Game
-    </a>
+            <h1 class="game-title">
+                 Sequence Recall
+            </h1>
+
+            <p class="game-subtitle">
+                Remember the numbers in the correct order.
+            </p>
+
+            <a
+                href="{{ url_for('games.remember') }}"
+                class="btn"
+            >
+                Start Game
+            </a>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

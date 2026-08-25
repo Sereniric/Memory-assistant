@@ -28,7 +28,8 @@ def remember():
 
     return render_template(
         "games/remember.html",
-        sequence=sequence
+        sequence=sequence,
+        difficulty=difficulty
     )
 
 @games.route("/answer")

@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.game-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.game-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.game-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.game-subtitle {
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+.difficulty {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.sequence {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 15px;
+    margin: 40px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 35px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #222;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.answer-input {
+    width: 100%;
+    max-width: 500px;
+    padding: 18px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin: 25px 0;
+}
+
+.result-score {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.result-message {
+    font-size: 26px;
+    margin-bottom: 30px;
+}
