@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+
+<body>
+
+    <h1>Result</h1>
+
+    <h2>
+        Score: {{ correct }}/{{ sequence|length }}
+    </h2>
+
+    <h2>
+        Accuracy: {{ "%.0f"|format(accuracy) }}%
+    </h2>
+
+    {% if accuracy >= 80 %}
+        <p> Great job!</p>
+    {% elif accuracy >= 50 %}
+        <p> Good try!</p>
+    {% else %}
+        <p> Keep practicing!</p>
+    {% endif %}
+
+    <p>
+        Current difficulty: {{ difficulty }}
+    </p>
+
+    <p>
+        Next difficulty: {{ new_difficulty }}
+    </p>
+
+    <a href="/game/remember">
+        Next Round
+    </a>
+
+</body>
+</html>
