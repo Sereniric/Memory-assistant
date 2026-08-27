@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caregiver Dashboard | SIH 26003</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+    <main class="dashboard-container">
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">SIH 26003</p>
+                <h1>Caregiver dashboard</h1>
+                <p class="dashboard-intro">A simple view of recent memory activity and progress.</p>
+            </div>
+            <a class="text-link" href="{{ url_for('main.home') }}">Back to home</a>
+        </header>
+
+        <section class="summary-grid" aria-label="Progress summary">
+            <article class="summary-card summary-card-blue">
+                <span class="summary-label">Games completed</span>
+                <strong>{{ total_games }}</strong>
+                <span class="summary-note">Recorded in this session</span>
+            </article>
+            <article class="summary-card summary-card-yellow">
+                <span class="summary-label">Average accuracy</span>
+                <strong>{{ average_accuracy }}%</strong>
+                <span class="summary-note">Across recorded rounds</span>
+            </article>
+            <article class="summary-card summary-card-green">
+                <span class="summary-label">Current level</span>
+                <strong>{{ current_difficulty }}</strong>
+                <span class="summary-note">Next sequence difficulty</span>
+            </article>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Progress log</p>
+                    <h2>Recent activity</h2>
+                </div>
+                <span class="activity-count">{{ activities|length }} shown</span>
+            </div>
+
+            {% if activities %}
+            <div class="activity-table-wrap">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Result</th>
+                            <th>Accuracy</th>
+                            <th>Difficulty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for activity in activities %}
+                        <tr>
+                            <td><strong>{{ activity.game }}</strong><span>{{ activity.message }}</span></td>
+                            <td>{{ activity.score }}</td>
+                            <td><span class="status-dot {% if activity.accuracy >= 70 %}status-good{% else %}status-review{% endif %}">{{ activity.accuracy }}%</span></td>
+                            <td>{{ activity.difficulty }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <h3>No activity yet</h3>
+                <p>Start a memory game to see the player's progress here.</p>
+                <a class="dashboard-button" href="{{ url_for('games.start') }}">Start a game</a>
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="caregiver-note">
+            <div>
+                <p class="eyebrow">Next step</p>
+                <h2>Keep practice regular and comfortable.</h2>
+            </div>
+            <p>This MVP records activity for the current browser session. Persistent profiles and shared caregiver access can be added with the planned database.</p>
+        </section>
+    </main>
+</body>
+</html>

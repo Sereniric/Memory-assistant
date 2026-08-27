@@ -17,6 +17,9 @@ def create_app():
     app.register_blueprint(shopping_memory)
     app.register_blueprint(picture_recall)
 
+    from app.routes.caregiver import caregiver
+    app.register_blueprint(caregiver)
+
     from app.routes.sequence_recall import sequence_recall
     app.register_blueprint(sequence_recall)
 

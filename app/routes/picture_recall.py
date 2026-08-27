@@ -84,6 +84,16 @@ def submit():
         if session["lives"] <= 0:
             session["state"] = "game_over"
 
+    history = session.get("game_history", [])
+    history.append({
+        "game": "Picture Recall",
+        "accuracy": 100 if correct else 0,
+        "score": f"+{session.get('last_points', 0)} points",
+        "difficulty": f"Level {session['level']}",
+        "message": "Completed" if correct else "Needs practice"
+    })
+    session["game_history"] = history[-20:]
+
     return redirect(url_for("picture_recall.result"))
 
 
