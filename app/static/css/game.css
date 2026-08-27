@@ -84,3 +84,45 @@ body {
     font-size: 26px;
     margin-bottom: 30px;
 }
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+}
+
+.item-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+    padding: 18px 12px;
+    border: 2px solid #dfe7ee;
+    border-radius: 12px;
+    background: #f9fbfd;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.picture-item {
+    font-size: 40px;
+}
+
+.status {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+label.item-option {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.3);
+}
