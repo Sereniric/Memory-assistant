@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Shopping Memory - Result</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="game-container">
+
+        <section class="game-card">
+
+            {% if game_over %}
+
+                <h1 class="game-title">
+                    💔 Game Over
+                </h1>
+
+            {% elif result == "correct" %}
+
+                <h1 class="game-title">
+                    🎉 Correct!
+                </h1>
+
+            {% else %}
+
+                <h1 class="game-title">
+                    ❌ Not Quite
+                </h1>
+
+            {% endif %}
+
+            <div class="status">
+
+                <span>
+                    Level: {{ level }}
+                </span>
+
+                <span>
+                    Score: {{ score }}
+                </span>
+
+                <span>
+                    ❤️ {{ lives }}
+                </span>
+
+            </div>
+
+            {% if result == "correct" %}
+
+                <p class="result-message">
+                    You earned {{ points }} points!
+                </p>
+
+            {% endif %}
+
+            <br>
+
+            {% if game_over %}
+
+                <a
+                    href="{{ url_for('shopping_memory.start') }}"
+                    class="btn"
+                >
+                    Play Again
+                </a>
+
+            {% else %}
+
+                <form
+                    method="POST"
+                    action="{{ url_for('shopping_memory.next_round') }}"
+                >
+
+                    <button
+                        type="submit"
+                        class="btn"
+                    >
+                        Next Round
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

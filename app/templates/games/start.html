@@ -3,9 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Sequence Recall</title>
+    <title>Cognitive Games</title>
 
     <link
         rel="stylesheet"
@@ -20,19 +23,54 @@
         <section class="game-card">
 
             <h1 class="game-title">
-                 Sequence Recall
+                🧠 Cognitive Games
             </h1>
 
             <p class="game-subtitle">
-                Remember the numbers in the correct order.
+                Choose a game to challenge your memory.
             </p>
 
-            <a
-                href="{{ url_for('games.remember') }}"
-                class="btn"
-            >
-                Start Game
-            </a>
+
+            <!-- Sequence Recall -->
+
+            <div class="game-option">
+
+                <h2>🧠 Sequence Recall</h2>
+
+                <p>
+                    Remember a sequence and reproduce it
+                    in the correct order.
+                </p>
+
+                <a
+                    href="{{ url_for('sequence_recall.intro') }}"
+                    class="btn"
+                >
+                    Play Sequence Recall
+                </a>
+
+            </div>
+
+
+            <!-- Shopping Memory -->
+
+            <div class="game-option">
+
+                <h2>🛒 Shopping Memory</h2>
+
+                <p>
+                    Remember the items on a shopping list
+                    and select them from a larger list.
+                </p>
+
+                <a
+                    href="{{ url_for('shopping_memory.start') }}"
+                    class="btn"
+                >
+                    Play Shopping Memory
+                </a>
+
+            </div>
 
         </section>
 
