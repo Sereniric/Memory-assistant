@@ -6,8 +6,16 @@ def create_app():
 
     app.config["SECRET_KEY"] = "dev-secret-key"
 
-    from app.routes.games import games
+    from app.routes import main
+    app.register_blueprint(main)
 
+    from app.routes.sequence_recall import games
+
+    from app.routes.shopping_memory import shopping_memory
     app.register_blueprint(games)
+    app.register_blueprint(shopping_memory)
+
+    from app.routes.sequence_recall import sequence_recall
+    app.register_blueprint(sequence_recall)
 
     return app

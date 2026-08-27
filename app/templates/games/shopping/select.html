@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Shopping Memory - Select</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="game-container">
+
+        <section class="game-card">
+
+            <h1 class="game-title">
+                🛒 Which Items Do You Remember?
+            </h1>
+
+            <p class="game-subtitle">
+                Select all the items you saw.
+            </p>
+
+            <div class="status">
+
+                <span>
+                    Level: {{ level }}
+                </span>
+
+                <span>
+                    Score: {{ score }}
+                </span>
+
+                <span>
+                    ❤️ {{ lives }}
+                </span>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('shopping_memory.submit') }}"
+            >
+
+                <div class="item-grid">
+
+                    {% for item in options %}
+
+                        <label class="item-option">
+
+                            <input
+                                type="checkbox"
+                                name="items"
+                                value="{{ item }}"
+                            >
+
+                            <span>
+                                {{ item }}
+                            </span>
+
+                        </label>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Submit Answer
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

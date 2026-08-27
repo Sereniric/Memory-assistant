@@ -1,20 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Sequence Recall</title>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cognitive Games</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
 </head>
 
 <body>
 
-    <h1> Sequence Recall</h1>
+    <main class="game-container">
 
-    <p>
-        Remember the numbers in the correct order.
-    </p>
+        <section class="game-card">
 
-    <a href="/game/remember">
-        Start Game
-    </a>
+            <h1 class="game-title">
+                🧠 Cognitive Games
+            </h1>
+
+            <p class="game-subtitle">
+                Choose a game to challenge your memory.
+            </p>
+
+
+            <!-- Sequence Recall -->
+
+            <div class="game-option">
+
+                <h2>🧠 Sequence Recall</h2>
+
+                <p>
+                    Remember a sequence and reproduce it
+                    in the correct order.
+                </p>
+
+                <a
+                    href="{{ url_for('sequence_recall.intro') }}"
+                    class="btn"
+                >
+                    Play Sequence Recall
+                </a>
+
+            </div>
+
+
+            <!-- Shopping Memory -->
+
+            <div class="game-option">
+
+                <h2>🛒 Shopping Memory</h2>
+
+                <p>
+                    Remember the items on a shopping list
+                    and select them from a larger list.
+                </p>
+
+                <a
+                    href="{{ url_for('shopping_memory.start') }}"
+                    class="btn"
+                >
+                    Play Shopping Memory
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

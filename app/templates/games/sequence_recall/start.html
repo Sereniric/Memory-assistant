@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sequence Recall</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="game-container">
+
+        <section class="game-card">
+
+            <h1 class="game-title">
+                🧠 Sequence Recall
+            </h1>
+
+            <p class="game-subtitle">
+                Test your memory by remembering the
+                sequence in the correct order.
+            </p>
+
+            <div class="game-option">
+
+                <h2>
+                    How to Play
+                </h2>
+
+                <p>
+                    A sequence will appear on the screen.
+                    Remember it carefully, then reproduce
+                    it in the correct order.
+                </p>
+
+            </div>
+
+            <div class="game-option">
+
+                <h2>
+                    🎯 Your Goal
+                </h2>
+
+                <p>
+                    Remember longer sequences as you
+                    progress through the levels.
+                </p>
+
+            </div>
+
+            <a
+                href="{{ url_for('games.remember') }}"
+                class="btn"
+            >
+                Start Game
+            </a>
+
+            <br>
+
+            <a
+                href="{{ url_for('games.start') }}"
+                class="back-link"
+            >
+                ← Back to Games
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

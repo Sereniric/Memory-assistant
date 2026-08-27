@@ -1,27 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Your Answer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
 </head>
 
 <body>
 
-    <h1>What was the sequence?</h1>
+    <main class="game-container">
 
-    <form method="POST" action="/game/submit">
+        <section class="game-card">
 
-        <input
-            type="text"
-            name="answer"
-            placeholder="Example: 4 8 2"
-            required
-        >
+            <h1 class="game-title">
+                What Was the Sequence?
+            </h1>
 
-        <button type="submit">
-            Submit
-        </button>
+            <p class="game-subtitle">
+                Enter the numbers in the same order.
+            </p>
 
-    </form>
+            <form
+                method="POST"
+                action="{{ url_for('games.submit') }}"
+            >
+
+                <input
+                    type="text"
+                    name="answer"
+                    class="answer-input"
+                    placeholder="Example: 4 8 2"
+                    autocomplete="off"
+                    required
+                >
+
+                <br>
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Submit Answer
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

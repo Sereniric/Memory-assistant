@@ -1,40 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Result</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
 </head>
 
 <body>
 
-    <h1>Result</h1>
+    <main class="game-container">
 
-    <h2>
-        Score: {{ correct }}/{{ sequence|length }}
-    </h2>
+        <section class="game-card">
 
-    <h2>
-        Accuracy: {{ "%.0f"|format(accuracy) }}%
-    </h2>
+            {% if accuracy >= 80 %}
 
-    {% if accuracy >= 80 %}
-        <p> Great job!</p>
-    {% elif accuracy >= 50 %}
-        <p> Good try!</p>
-    {% else %}
-        <p> Keep practicing!</p>
-    {% endif %}
+                <h1 class="game-title">
+                     Great Job!
+                </h1>
 
-    <p>
-        Current difficulty: {{ difficulty }}
-    </p>
+            {% elif accuracy >= 50 %}
 
-    <p>
-        Next difficulty: {{ new_difficulty }}
-    </p>
+                <h1 class="game-title">
+                     Good Try!
+                </h1>
 
-    <a href="/game/remember">
-        Next Round
-    </a>
+            {% else %}
+
+                <h1 class="game-title">
+                     Keep Practicing!
+                </h1>
+
+            {% endif %}
+
+
+            <div class="result-score">
+                {{ correct }}/{{ sequence|length }}
+            </div>
+
+            <p class="result-message">
+                Accuracy: {{ "%.0f"|format(accuracy) }}%
+            </p>
+
+            <p>
+                Current difficulty:
+                <strong>{{ difficulty|upper }}</strong>
+            </p>
+
+            <p>
+                Next difficulty:
+                <strong>{{ new_difficulty|upper }}</strong>
+            </p>
+
+            <br>
+
+            <a
+                href="{{ url_for('games.remember') }}"
+                class="btn"
+            >
+                Next Round
+            </a>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

@@ -6,8 +6,21 @@ from app.games.sequence_recall import (
     next_difficulty
 )
 
+sequence_recall = Blueprint(
+    "sequence_recall",
+    __name__,
+    url_prefix="/game/sequence"
+)
 
 games = Blueprint("games", __name__, url_prefix="/game")
+
+@sequence_recall.route("/")
+def intro():
+
+    return render_template(
+        "games/sequence_recall/start.html"
+    )
+
 
 
 @games.route("/")
@@ -28,7 +41,8 @@ def remember():
 
     return render_template(
         "games/remember.html",
-        sequence=sequence
+        sequence=sequence,
+        difficulty=difficulty
     )
 
 @games.route("/answer")
