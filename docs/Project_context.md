@@ -139,18 +139,17 @@ NOTE:
 - Basic HTML homepage
 - Basic CSS styling
 - Local Flask development server
+- Patient dashboard
+- Game result tracking
+- Caregiver dashboard
+- Database models
 
 ## Not Implemented Yet
 
 - User authentication
 - User roles
-- Database models
 - SQLite database integration
-- Cognitive games
-- Game result tracking
 - Adaptive difficulty
-- Patient dashboard
-- Caregiver dashboard
 - Progress tracking
 - Reminders
 - Voice functionality
