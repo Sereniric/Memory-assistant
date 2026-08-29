@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Medicine | SIH 26003</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+    <main class="dashboard-container">
+
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Medication</p>
+                <h1>💊 Add Medicine</h1>
+                <p class="dashboard-intro">Record a new prescription for {{ patient.name }}.</p>
+            </div>
+            <a class="text-link" href="{{ url_for('patient.index') }}">Cancel</a>
+        </header>
+
+        <section class="dashboard-section">
+            <form method="POST" action="{{ url_for('patient.add_medicine') }}">
+
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="name">Medicine name</label>
+                        <input type="text" id="name" name="name" placeholder="e.g. Donepezil" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="dosage">Dosage</label>
+                        <input type="text" id="dosage" name="dosage" placeholder="e.g. 5 mg">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="frequency">Frequency</label>
+                        <input type="text" id="frequency" name="frequency" placeholder="e.g. Once daily, after breakfast">
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Any special instructions or side effects to watch for"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Medicine</button>
+                    <a class="btn-secondary" href="{{ url_for('patient.index') }}">Cancel</a>
+                </div>
+
+            </form>
+        </section>
+
+    </main>
+</body>
+</html>

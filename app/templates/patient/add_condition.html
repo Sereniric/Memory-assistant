@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Condition | SIH 26003</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+    <main class="dashboard-container">
+
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Health record</p>
+                <h1>🩺 Add Condition</h1>
+                <p class="dashboard-intro">Record a health condition for {{ patient.name }}.</p>
+            </div>
+            <a class="text-link" href="{{ url_for('patient.index') }}">Cancel</a>
+        </header>
+
+        <section class="dashboard-section">
+            <form method="POST" action="{{ url_for('patient.add_condition') }}">
+
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="name">Condition name</label>
+                        <input type="text" id="name" name="name" placeholder="e.g. Hypertension" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="active">Active</option>
+                            <option value="managed">Managed</option>
+                            <option value="resolved">Resolved</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="diagnosed_date">Diagnosed on</label>
+                        <input type="date" id="diagnosed_date" name="diagnosed_date">
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Any details caregivers should know about this condition"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Condition</button>
+                    <a class="btn-secondary" href="{{ url_for('patient.index') }}">Cancel</a>
+                </div>
+
+            </form>
+        </section>
+
+    </main>
+</body>
+</html>

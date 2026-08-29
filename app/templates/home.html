@@ -4,25 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SIH 26003</title>
+    <title>MemoryCare — Support for Dementia Patients</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
-<body>
+<body class="home-page">
 
-    <main class="container">
-        <h1>Welcome to SIH 26003</h1>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="site-logo" href="{{ url_for('main.home') }}">🧠 MemoryCare</a>
 
-        <p>
-            Cognitive Gaming and Memory Assistance Platform
-        </p>
+            <nav class="site-nav">
+                <a href="{{ url_for('games.start') }}">Cognitive Games</a>
+                <a href="{{ url_for('patient.index') }}">Patient Dashboard</a>
+                <a href="{{ url_for('caregiver.dashboard') }}">Caregiver Dashboard</a>
+            </nav>
+        </div>
+    </header>
 
-        <a href="{{ url_for('games.start') }}">
-            <button>Start</button>
-        </a>
+    <main class="hero">
+        <div class="hero-inner">
+            <p class="eyebrow">Support for people living with dementia</p>
+
+            <h1>Gentle cognitive care, every day.</h1>
+
+            <p class="hero-subtitle">
+                MemoryCare is a simple, elderly-friendly platform that helps people
+                with dementia stay mentally active through easy, adaptive memory
+                games — while giving caregivers a clear view of the patient's
+                profile, medicines, health conditions, and daily progress, all in
+                one calm and uncluttered place.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn-primary" href="{{ url_for('games.start') }}">
+                    🧠 Play a Memory Game
+                </a>
+                <a class="btn-secondary-outline" href="{{ url_for('patient.index') }}">
+                    📋 Open Patient Dashboard
+                </a>
+            </div>
+        </div>
     </main>
+
+    <section class="feature-section">
+        <div class="feature-grid">
+
+            <article class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h2>Cognitive Games</h2>
+                <p>
+                    Sequence Recall, Shopping Memory, and Picture Recall gently
+                    adapt in difficulty to keep practice encouraging and never
+                    overwhelming.
+                </p>
+                <a class="text-link" href="{{ url_for('games.start') }}">Play now →</a>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h2>Patient Dashboard</h2>
+                <p>
+                    Keep the patient's profile, medicines, and health conditions
+                    organized in one place that's easy for family members and
+                    caregivers to check.
+                </p>
+                <a class="text-link" href="{{ url_for('patient.index') }}">View dashboard →</a>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <h2>Caregiver Insights</h2>
+                <p>
+                    See recent game activity and accuracy trends so caregivers
+                    can notice changes early and celebrate every bit of progress.
+                </p>
+                <a class="text-link" href="{{ url_for('caregiver.dashboard') }}">View activity →</a>
+            </article>
+
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>Built for SIH 26003 — Cognitive Gaming and Memory Assistance Platform.</p>
+    </footer>
 
 </body>
 </html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | SIH 26003</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+    <main class="dashboard-container">
+
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Patient Profile</p>
+                <h1>{{ patient.name }}</h1>
+                <p class="dashboard-intro">
+                    {{ patient.dementia_stage|capitalize if patient.dementia_stage else "Stage not set" }} stage dementia
+                    {% if patient.age %} · {{ patient.age }} years old{% endif %}
+                    {% if patient.gender %} · {{ patient.gender }}{% endif %}
+                </p>
+            </div>
+            <div class="dashboard-header-actions">
+                <a class="text-link" href="{{ url_for('patient.edit_profile') }}">Edit details</a>
+                <a class="text-link" href="{{ url_for('caregiver.dashboard') }}">Caregiver activity</a>
+                <a class="text-link" href="{{ url_for('main.home') }}">Back to home</a>
+            </div>
+        </header>
+
+        <section class="summary-grid" aria-label="Patient summary">
+            <article class="summary-card summary-card-blue">
+                <span class="summary-label">Dementia stage</span>
+                <strong>{{ patient.dementia_stage|capitalize if patient.dementia_stage else "Not set" }}</strong>
+                <span class="summary-note">
+                    {% if patient.diagnosis_date %}Diagnosed {{ patient.diagnosis_date }}{% else %}Diagnosis date not recorded{% endif %}
+                </span>
+            </article>
+            <article class="summary-card summary-card-yellow">
+                <span class="summary-label">Active medicines</span>
+                <strong>{{ medicines|length }}</strong>
+                <span class="summary-note">Tracked prescriptions</span>
+            </article>
+            <article class="summary-card summary-card-green">
+                <span class="summary-label">Conditions logged</span>
+                <strong>{{ conditions|length }}</strong>
+                <span class="summary-note">Health conditions on file</span>
+            </article>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Contact &amp; care details</p>
+                    <h2>Patient information</h2>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span>Primary caregiver</span>
+                    <strong>{{ patient.caregiver_name or "Not set" }}</strong>
+                </div>
+                <div class="info-item">
+                    <span>Caregiver phone</span>
+                    <strong>{{ patient.caregiver_phone or "Not set" }}</strong>
+                </div>
+                <div class="info-item">
+                    <span>Emergency contact</span>
+                    <strong>{{ patient.emergency_contact or "Not set" }}</strong>
+                </div>
+                <div class="info-item">
+                    <span>Notes</span>
+                    <strong>{{ patient.notes or "No additional notes" }}</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Medication</p>
+                    <h2>💊 Medicines</h2>
+                </div>
+                <span class="activity-count">{{ medicines|length }} total</span>
+            </div>
+
+            {% if medicines %}
+            <div class="activity-table-wrap">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Dosage</th>
+                            <th>Frequency</th>
+                            <th>Notes</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for medicine in medicines %}
+                        <tr>
+                            <td><strong>{{ medicine.name }}</strong></td>
+                            <td>{{ medicine.dosage or "—" }}</td>
+                            <td>{{ medicine.frequency or "—" }}</td>
+                            <td>{{ medicine.notes or "—" }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('patient.delete_medicine', medicine_id=medicine.id) }}">
+                                    <button type="submit" class="text-link-button">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <h3>No medicines yet</h3>
+                <p>Add the first medicine to start tracking the patient's prescriptions.</p>
+            </div>
+            {% endif %}
+
+            <a class="dashboard-button" href="{{ url_for('patient.add_medicine') }}">+ Add Medicine</a>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Health record</p>
+                    <h2>🩺 Conditions</h2>
+                </div>
+                <span class="activity-count">{{ conditions|length }} total</span>
+            </div>
+
+            {% if conditions %}
+            <div class="activity-table-wrap">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Status</th>
+                            <th>Diagnosed</th>
+                            <th>Notes</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for condition in conditions %}
+                        <tr>
+                            <td><strong>{{ condition.name }}</strong></td>
+                            <td>
+                                <span class="status-dot {% if condition.status == 'active' %}status-review{% else %}status-good{% endif %}">
+                                    {{ condition.status|capitalize }}
+                                </span>
+                            </td>
+                            <td>{{ condition.diagnosed_date or "—" }}</td>
+                            <td>{{ condition.notes or "—" }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('patient.delete_condition', condition_id=condition.id) }}">
+                                    <button type="submit" class="text-link-button">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <h3>No conditions yet</h3>
+                <p>Add a health condition to keep the patient's record complete.</p>
+            </div>
+            {% endif %}
+
+            <a class="dashboard-button" href="{{ url_for('patient.add_condition') }}">+ Add Condition</a>
+        </section>
+
+        <section class="caregiver-note">
+            <div>
+                <p class="eyebrow">For caregivers</p>
+                <h2>Keep this profile up to date.</h2>
+            </div>
+            <p>
+                Accurate medicine and condition records help everyone involved
+                in the patient's care respond quickly and safely. Update this
+                page whenever a prescription or diagnosis changes.
+            </p>
+        </section>
+
+    </main>
+</body>
+</html>

@@ -88,6 +88,16 @@ def submit():
 
     session["difficulty"] = new_difficulty
 
+    history = session.get("game_history", [])
+    history.append({
+        "game": "Sequence Recall",
+        "accuracy": round(accuracy),
+        "score": f"{round(accuracy)}%",
+        "difficulty": difficulty.title(),
+        "message": "Completed"
+    })
+    session["game_history"] = history[-20:]
+
     return render_template(
         "games/result.html",
         sequence=sequence,
