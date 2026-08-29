@@ -14,7 +14,10 @@
                 <h1>Caregiver dashboard</h1>
                 <p class="dashboard-intro">A simple view of recent memory activity and progress.</p>
             </div>
-            <a class="text-link" href="{{ url_for('main.home') }}">Back to home</a>
+            <div class="dashboard-header-actions">
+                <a class="text-link" href="{{ url_for('patient.index') }}">Patient dashboard</a>
+                <a class="text-link" href="{{ url_for('main.home') }}">Back to home</a>
+            </div>
         </header>
 
         <section class="summary-grid" aria-label="Progress summary">
