@@ -5,6 +5,7 @@ from app.games.sequence_recall import (
     calculate_score,
     next_difficulty
 )
+from app.games.result_tracking import record_result
 
 sequence_recall = Blueprint(
     "sequence_recall",
@@ -74,6 +75,15 @@ def submit():
     new_difficulty = next_difficulty(
         difficulty,
         accuracy
+    )
+
+    record_result(
+        "Sequence Recall",
+        score=correct,
+        accuracy=accuracy,
+        difficulty=difficulty,
+        correct=correct,
+        total=len(sequence),
     )
 
     session["difficulty"] = new_difficulty

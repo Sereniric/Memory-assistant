@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Results</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/game.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="game-container">
+        <section class="game-card">
+            <h1 class="game-title">Game Results</h1>
+
+            {% if results %}
+                {% for result in results|reverse %}
+                    <div class="game-option">
+                        <h2>{{ result.game }}</h2>
+                        <p>
+                            Score: <strong>{{ result.score }}</strong>
+                            | Accuracy: <strong>{{ result.accuracy }}%</strong>
+                        </p>
+                        <p>
+                            Difficulty: {{ result.difficulty }}
+                            | Completed: {{ result.completed_at }}
+                        </p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No completed games yet.</p>
+            {% endif %}
+
+            <a href="{{ url_for('games.start') }}" class="back-link">
+                Back to Games
+            </a>
+        </section>
+    </main>
+
+</body>
+
+</html>

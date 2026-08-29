@@ -12,10 +12,12 @@ def create_app():
     from app.routes.sequence_recall import games
     from app.routes.shopping_memory import shopping_memory
     from app.routes.picture_recall import picture_recall
+    from app.routes.results import results
 
     app.register_blueprint(games)
     app.register_blueprint(shopping_memory)
     app.register_blueprint(picture_recall)
+    app.register_blueprint(results)
 
     from app.routes.sequence_recall import sequence_recall
     app.register_blueprint(sequence_recall)

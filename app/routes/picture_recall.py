@@ -12,6 +12,7 @@ from app.games.picture_recall import (
     check_answer,
     create_round,
 )
+from app.games.result_tracking import record_result
 
 
 picture_recall = Blueprint(
@@ -83,6 +84,14 @@ def submit():
         session["last_points"] = 0
         if session["lives"] <= 0:
             session["state"] = "game_over"
+
+    record_result(
+        "Picture Recall",
+        score=session["last_points"],
+        accuracy=100 if correct else 0,
+        difficulty=f"level {session['level']}",
+        correct=correct,
+    )
 
     return redirect(url_for("picture_recall.result"))
 

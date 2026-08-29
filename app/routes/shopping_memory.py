@@ -12,6 +12,7 @@ from app.games.shopping_memory import (
     calculate_points,
     check_answer
 )
+from app.games.result_tracking import record_result
 
 
 shopping_memory = Blueprint(
@@ -123,6 +124,14 @@ def submit():
 
         if session["lives"] <= 0:
             session["state"] = "game_over"
+
+    record_result(
+        "Shopping Memory",
+        score=session["last_points"],
+        accuracy=100 if correct else 0,
+        difficulty=f"level {session['level']}",
+        correct=correct,
+    )
 
     return redirect(
         url_for("shopping_memory.result")
