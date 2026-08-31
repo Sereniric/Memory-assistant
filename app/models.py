@@ -35,6 +35,13 @@ class Patient(db.Model):
         order_by="Condition.created_at"
     )
 
+    reminders = db.relationship(
+        "Reminder",
+        backref="patient",
+        cascade="all, delete-orphan",
+        order_by="Reminder.created_at.desc()"
+    )
+
 
 class Medicine(db.Model):
     __tablename__ = "medicines"
@@ -68,6 +75,24 @@ class Condition(db.Model):
     status = db.Column(db.String(20), default="active")
     diagnosed_date = db.Column(db.String(20))
     notes = db.Column(db.String(255))
+
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class Reminder(db.Model):
+    __tablename__ = "reminders"
+
+    id = db.Column(db.Integer, primary_key=True)
+    patient_id = db.Column(
+        db.Integer,
+        db.ForeignKey("patients.id"),
+        nullable=False
+    )
+
+    title = db.Column(db.String(120), nullable=False)
+    day = db.Column(db.String(20))
+    time = db.Column(db.String(20))
+    message = db.Column(db.Text)
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 

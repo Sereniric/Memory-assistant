@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Reminder | SIH 26003</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+    <main class="dashboard-container">
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Caregiver Actions</p>
+                <h1>Add patient reminder</h1>
+                <p class="dashboard-intro">Set a reminder for {{ patient.name }}.</p>
+            </div>
+            <div class="dashboard-header-actions">
+                <a class="text-link" href="{{ url_for('caregiver.dashboard') }}">Back to dashboard</a>
+                <a class="text-link" href="{{ url_for('patient.index') }}">Patient dashboard</a>
+            </div>
+        </header>
+
+        <section class="dashboard-section">
+            <form method="POST" action="{{ url_for('caregiver.add_reminder') }}">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="title">Reminder title</label>
+                        <input type="text" id="title" name="title" placeholder="Morning medicine" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="day">Day</label>
+                        <select id="day" name="day">
+                            <option value="">Any day</option>
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                            <option>Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time">
+                    </div>
+                    <div class="form-field full-width">
+                        <label for="message">Reminder message</label>
+                        <textarea id="message" name="message" placeholder="Example: Give the daily tablet after breakfast."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save reminder</button>
+                    <a class="btn-secondary" href="{{ url_for('caregiver.dashboard') }}">Cancel</a>
+                </div>
+            </form>
+        </section>
+
+        {% if reminders %}
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Scheduled reminders</p>
+                    <h2>Patient reminders</h2>
+                </div>
+                <span class="activity-count">{{ reminders|length }} total</span>
+            </div>
+
+            <div class="activity-table-wrap">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reminder in reminders %}
+                        <tr>
+                            <td><strong>{{ reminder.title }}</strong></td>
+                            <td>{{ reminder.day or "Any day" }}</td>
+                            <td>{{ reminder.time or "—" }}</td>
+                            <td>{{ reminder.message or "—" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>

@@ -77,6 +77,46 @@
         <section class="dashboard-section">
             <div class="section-heading">
                 <div>
+                    <p class="eyebrow">Care reminders</p>
+                    <h2>⏰ Reminders</h2>
+                </div>
+                <span class="activity-count">{{ patient.reminders|length }} total</span>
+            </div>
+
+            {% if patient.reminders %}
+            <div class="activity-table-wrap">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reminder in patient.reminders %}
+                        <tr>
+                            <td><strong>{{ reminder.title }}</strong></td>
+                            <td>{{ reminder.day or "Any day" }}</td>
+                            <td>{{ reminder.time or "—" }}</td>
+                            <td>{{ reminder.message or "—" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <h3>No reminders yet</h3>
+                <p>Caregiver reminders will appear here once they are scheduled.</p>
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
                     <p class="eyebrow">Medication</p>
                     <h2>💊 Medicines</h2>
                 </div>
