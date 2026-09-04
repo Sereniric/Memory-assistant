@@ -3,6 +3,7 @@ import unittest
 from flask import Flask
 
 from app.games.result_tracking import get_results, record_result
+from app.routes.sequence_recall import normalize_answer
 
 
 class ResultTrackingTest(unittest.TestCase):
@@ -31,6 +32,19 @@ class ResultTrackingTest(unittest.TestCase):
     def test_results_start_empty(self):
         with self.app.test_request_context():
             self.assertEqual(get_results(), [])
+
+    def test_normalize_answer_accepts_digits(self):
+        self.assertEqual(normalize_answer("4 8 2 7"), [4, 8, 2, 7])
+
+    def test_normalize_answer_accepts_spoken_digits(self):
+        self.assertEqual(
+            normalize_answer("four eight two seven"),
+            [4, 8, 2, 7],
+        )
+
+    def test_normalize_answer_rejects_non_numbers(self):
+        with self.assertRaises(ValueError):
+            normalize_answer("four apples")
 
 
 if __name__ == "__main__":

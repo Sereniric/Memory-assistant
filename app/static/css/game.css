@@ -74,6 +74,57 @@ body {
     margin: 25px 0;
 }
 
+.voice-input {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid #e5e8e1;
+}
+
+.voice-input h2 {
+    font-size: 24px;
+    margin: 0 0 20px;
+}
+
+.voice-input input[type="file"] {
+    display: block;
+    width: 100%;
+    margin: 0 auto 20px;
+    padding: 14px;
+    font-size: 18px;
+}
+
+.voice-button {
+    background: #557174;
+}
+
+.voice-status {
+    min-height: 28px;
+    margin: 18px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.voice-confirmation {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.voice-confirmation p {
+    margin: 0 0 20px;
+}
+
+.voice-retry {
+    display: inline-block;
+    padding: 16px 28px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #557174;
+    border-radius: 10px;
+    cursor: pointer;
+    background: white;
+    color: #557174;
+}
+
 .result-score {
     font-size: 48px;
     font-weight: bold;

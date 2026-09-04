@@ -30,6 +30,7 @@
             <form
                 method="POST"
                 action="{{ url_for('games.submit') }}"
+                id="sequence-answer-form"
             >
 
                 <input
@@ -51,6 +52,70 @@
                 </button>
 
             </form>
+
+            <div
+                class="voice-input"
+            >
+                <h2>Or speak your answer</h2>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('games.voice_answer') }}"
+                    enctype="multipart/form-data"
+                >
+
+                    <input
+                        type="file"
+                        name="voice_answer"
+                        accept="audio/*"
+                        capture
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn voice-button"
+                    >
+                        🎙 Upload Voice Answer
+                    </button>
+
+                </form>
+
+                {% if voice_error %}
+                    <p class="voice-status">{{ voice_error }}</p>
+                {% endif %}
+
+                {% if voice_transcript %}
+                    <div class="voice-confirmation">
+                        <p>
+                            You said:
+                            <strong>{{ voice_transcript }}</strong>
+                        </p>
+
+                        <form
+                            method="POST"
+                            action="{{ url_for('games.submit') }}"
+                        >
+                            <input
+                                type="hidden"
+                                name="answer"
+                                value="{{ voice_answer }}"
+                            >
+
+                            <button type="submit" class="btn">
+                                Use Answer
+                            </button>
+
+                            <a
+                                href="{{ url_for('games.answer') }}"
+                                class="voice-retry"
+                            >
+                                Try Again
+                            </a>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
 
         </section>
 
