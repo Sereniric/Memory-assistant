@@ -92,6 +92,7 @@
                             <th>Day</th>
                             <th>Time</th>
                             <th>Message</th>
+                            <th>Voice</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,6 +102,11 @@
                             <td>{{ reminder.day or "Any day" }}</td>
                             <td>{{ reminder.time or "—" }}</td>
                             <td>{{ reminder.message or "—" }}</td>
+                            <td>
+                                <a class="text-link" href="{{ url_for('patient.reminder_voice', reminder_id=reminder.id) }}">
+                                    Listen
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

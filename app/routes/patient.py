@@ -1,7 +1,11 @@
-from flask import Blueprint, redirect, render_template, request, url_for
+from io import BytesIO
+
+from flask import Blueprint, abort, redirect, render_template, request, send_file, url_for
 
 from app.extensions import db
 from app.models import Condition, Medicine, get_patient, require_roles
+from app.models import Condition, Medicine, Reminder, get_patient
+from app.services import text_to_speech
 
 patient = Blueprint(
     "patient",
@@ -21,6 +25,28 @@ def index():
         medicines=current_patient.medicines,
         conditions=current_patient.conditions
     )
+
+
+@patient.route("/reminder/<int:reminder_id>/voice")
+def reminder_voice(reminder_id):
+    current_patient = get_patient()
+    reminder = Reminder.query.filter_by(
+        id=reminder_id,
+        patient_id=current_patient.id,
+    ).first()
+
+    if reminder is None:
+        abort(404)
+
+    try:
+        audio = text_to_speech.generate_reminder_audio(reminder)
+    except text_to_speech.TextToSpeechError as error:
+        return str(error), 503
+
+    if isinstance(audio, bytes):
+        audio = BytesIO(audio)
+
+    return send_file(audio, mimetype="audio/wav", download_name="reminder.wav")
 
 
 @patient.route("/profile/edit", methods=["GET", "POST"])
@@ -47,7 +73,8 @@ def edit_profile():
 
     return render_template(
         "patient/edit_profile.html",
-        patient=current_patient
+        patient=current_patient,
+        sos_setup=request.args.get("sos_setup") == "1",
     )
 
 
