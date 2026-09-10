@@ -172,6 +172,40 @@ button.dashboard-button { border: none; font-family: Arial, sans-serif; cursor: 
 .hero-subtitle { font-family: Arial, sans-serif; font-size: 18px; line-height: 1.7; color: #dcecef; margin: 0 0 34px; }
 .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
+.sos-panel { margin: 42px auto 0; max-width: 430px; text-align: center; }
+.sos-label { color: #ffd8d4; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; margin: 0 0 12px; }
+.sos-button { align-items: center; background: #c62828; border: 3px solid #ffaaa3; color: #fff; display: inline-flex; gap: 12px; justify-content: center; min-height: 68px; padding: 0 30px; font-family: Arial, sans-serif; font-size: 21px; font-weight: bold; text-decoration: none; border-radius: 8px; box-shadow: 0 8px 0 #8d1c1c; }
+.sos-button:hover { background: #a91f1f; }
+.sos-icon { align-items: center; border: 2px solid #fff; border-radius: 50%; display: inline-flex; font-size: 20px; height: 30px; justify-content: center; width: 30px; }
+.sos-help { color: #ffd8d4; font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; margin: 18px 0 0; }
+
+.sos-page { align-items: center; background: #f8e8e6; display: flex; justify-content: center; min-height: 100vh; padding: 24px; }
+.sos-card { background: #fffdf8; box-shadow: 0 14px 34px rgba(98, 35, 31, .16); max-width: 560px; padding: 52px 34px; text-align: center; width: 100%; }
+.sos-card h1 { color: #8d1c1c; font-size: clamp(30px, 5vw, 46px); margin: 0 0 18px; }
+.sos-countdown-copy, .sos-recipient, .sos-success, .sos-message, .sos-note { font-family: Arial, sans-serif; }
+.sos-countdown-copy { color: #557174; font-size: 18px; }
+.countdown { color: #c62828; font-family: Arial, sans-serif; font-size: 92px; font-weight: bold; height: 110px; line-height: 110px; margin: 10px auto; position: relative; }
+.countdown span { animation: countdown 10s steps(1, end) forwards; left: 0; opacity: 0; position: absolute; right: 0; }
+.countdown span:nth-child(1) { animation-delay: 0s; }
+.countdown span:nth-child(2) { animation-delay: 1s; }
+.countdown span:nth-child(3) { animation-delay: 2s; }
+.countdown span:nth-child(4) { animation-delay: 3s; }
+.countdown span:nth-child(5) { animation-delay: 4s; }
+.countdown span:nth-child(6) { animation-delay: 5s; }
+.countdown span:nth-child(7) { animation-delay: 6s; }
+.countdown span:nth-child(8) { animation-delay: 7s; }
+.countdown span:nth-child(9) { animation-delay: 8s; }
+.countdown span:nth-child(10) { animation-delay: 9s; }
+@keyframes countdown { 0%, 9.9% { opacity: 1; } 10%, 100% { opacity: 0; } }
+.sos-recipient { color: #173b3f; font-weight: bold; }
+.cancel-sos { color: #557174; display: inline-block; font-family: Arial, sans-serif; font-weight: bold; margin-top: 28px; }
+.sos-sent-card { border-top: 10px solid #c62828; }
+.sos-success { color: #367d55; font-size: 18px; font-weight: bold; }
+.sos-message { background: #f8e8e6; color: #62231f; line-height: 1.5; padding: 16px; }
+.sos-note { color: #557174; font-size: 14px; line-height: 1.5; margin: 22px auto; max-width: 420px; }
+.sos-message-link { box-shadow: none; font-size: 16px; min-height: 52px; }
+.sos-setup-note { background: #f8e8e6; border-left: 5px solid #c62828; color: #62231f; font-family: Arial, sans-serif; line-height: 1.5; margin-bottom: 24px; padding: 14px 16px; text-align: left; }
+
 .btn-secondary-outline {
     display: inline-block;
     padding: 14px 26px;

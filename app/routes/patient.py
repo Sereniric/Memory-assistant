@@ -70,7 +70,8 @@ def edit_profile():
 
     return render_template(
         "patient/edit_profile.html",
-        patient=current_patient
+        patient=current_patient,
+        sos_setup=request.args.get("sos_setup") == "1",
     )
 
 

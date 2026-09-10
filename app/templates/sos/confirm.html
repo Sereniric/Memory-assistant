@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10;url={{ url_for('main.sos_send') }}">
+    <title>Emergency SOS Countdown | MemoryCare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="sos-page">
+    <main class="sos-card">
+        <p class="eyebrow">Emergency SOS</p>
+        <h1>Alerting {{ patient.caregiver_name or "your family member" }}</h1>
+        <p class="sos-countdown-copy">Your emergency message will be sent in:</p>
+        <div class="countdown" aria-label="10 second countdown">
+            {% for number in range(10, 0, -1) %}
+            <span>{{ number }}</span>
+            {% endfor %}
+        </div>
+        <p class="sos-recipient">{{ patient.caregiver_phone }}</p>
+        <a class="cancel-sos" href="{{ url_for('main.home') }}">Cancel SOS</a>
+    </main>
+</body>
+</html>

@@ -19,6 +19,11 @@
         </header>
 
         <section class="dashboard-section">
+            {% if sos_setup %}
+            <div class="sos-setup-note">
+                Add a family member's name and phone number so the Emergency SOS button knows where to send the alert.
+            </div>
+            {% endif %}
             <form method="POST" action="{{ url_for('patient.edit_profile') }}">
 
                 <div class="form-grid">
@@ -52,12 +57,12 @@
                     </div>
 
                     <div class="form-field">
-                        <label for="caregiver_name">Primary caregiver</label>
+                        <label for="caregiver_name">SOS family member</label>
                         <input type="text" id="caregiver_name" name="caregiver_name" value="{{ patient.caregiver_name or '' }}" placeholder="e.g. Priya Sharma">
                     </div>
 
                     <div class="form-field">
-                        <label for="caregiver_phone">Caregiver phone</label>
+                        <label for="caregiver_phone">SOS family member phone</label>
                         <input type="text" id="caregiver_phone" name="caregiver_phone" value="{{ patient.caregiver_phone or '' }}" placeholder="e.g. +91 98765 43210">
                     </div>
 
