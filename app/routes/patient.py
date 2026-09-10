@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 
 from app.extensions import db
-from app.models import Condition, Medicine, get_patient
+from app.models import Condition, Medicine, get_patient, require_roles
 
 patient = Blueprint(
     "patient",
@@ -11,6 +11,7 @@ patient = Blueprint(
 
 
 @patient.route("/")
+@require_roles("patient", "caregiver")
 def index():
     current_patient = get_patient()
 
@@ -23,6 +24,7 @@ def index():
 
 
 @patient.route("/profile/edit", methods=["GET", "POST"])
+@require_roles("patient", "caregiver")
 def edit_profile():
     current_patient = get_patient()
 
@@ -50,6 +52,7 @@ def edit_profile():
 
 
 @patient.route("/medicine/add", methods=["GET", "POST"])
+@require_roles("patient", "caregiver")
 def add_medicine():
     current_patient = get_patient()
 
@@ -76,6 +79,7 @@ def add_medicine():
 
 
 @patient.route("/medicine/<int:medicine_id>/delete", methods=["POST"])
+@require_roles("patient", "caregiver")
 def delete_medicine(medicine_id):
     medicine = Medicine.query.get_or_404(medicine_id)
 
@@ -86,6 +90,7 @@ def delete_medicine(medicine_id):
 
 
 @patient.route("/condition/add", methods=["GET", "POST"])
+@require_roles("patient", "caregiver")
 def add_condition():
     current_patient = get_patient()
 
@@ -112,6 +117,7 @@ def add_condition():
 
 
 @patient.route("/condition/<int:condition_id>/delete", methods=["POST"])
+@require_roles("patient", "caregiver")
 def delete_condition(condition_id):
     condition = Condition.query.get_or_404(condition_id)
 

@@ -24,6 +24,9 @@ picture_recall = Blueprint(
 
 @picture_recall.route("/")
 def start():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     session["level"] = 1
     session["score"] = 0
     session["lives"] = 3
@@ -38,6 +41,9 @@ def start():
 
 @picture_recall.route("/remember")
 def remember():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     if "level" not in session:
         return redirect(url_for("picture_recall.start"))
 
@@ -50,6 +56,9 @@ def remember():
 
 @picture_recall.route("/select")
 def select():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     if "level" not in session:
         return redirect(url_for("picture_recall.start"))
 
@@ -64,6 +73,9 @@ def select():
 
 @picture_recall.route("/submit", methods=["POST"])
 def submit():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     if "level" not in session:
         return redirect(url_for("picture_recall.start"))
 
@@ -108,6 +120,9 @@ def submit():
 
 @picture_recall.route("/result")
 def result():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     if "level" not in session:
         return redirect(url_for("picture_recall.start"))
 
@@ -124,6 +139,9 @@ def result():
 
 @picture_recall.route("/next", methods=["POST"])
 def next_round():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     if "level" not in session:
         return redirect(url_for("picture_recall.start"))
 

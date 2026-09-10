@@ -1,6 +1,6 @@
 import re
 
-from flask import Blueprint, render_template, session, request
+from flask import Blueprint, redirect, render_template, session, request, url_for
 
 from app.games.sequence_recall import (
     generate_sequence,
@@ -53,6 +53,8 @@ def normalize_answer(answer_text):
 
 @sequence_recall.route("/")
 def intro():
+    if not session.get("user_role") == "patient":
+        return redirect(url_for("main.login"))
 
     return render_template(
         "games/sequence_recall/start.html"
@@ -62,6 +64,9 @@ def intro():
 
 @games.route("/")
 def start():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     session["difficulty"] = "easy"
 
     return render_template(
@@ -70,6 +75,9 @@ def start():
 
 @games.route("/remember")
 def remember():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     difficulty = session.get("difficulty", "easy")
 
     sequence = generate_sequence(difficulty)
@@ -84,12 +92,18 @@ def remember():
 
 @games.route("/answer")
 def answer():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     return render_template(
         "games/answer.html"
     )
 
 @games.route("/voice", methods=["POST"])
 def voice_answer():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     audio_file = request.files.get("voice_answer")
 
     if audio_file is None or not audio_file.filename:
@@ -117,6 +131,9 @@ def voice_answer():
 
 @games.route("/submit", methods=["POST"])
 def submit():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
+
     sequence = session.get("sequence", [])
     difficulty = session.get("difficulty", "easy")
 

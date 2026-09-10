@@ -2,7 +2,7 @@ import unittest
 
 from app import create_app
 from app.extensions import db
-from app.models import get_patient
+from app.models import ensure_default_users, get_patient
 
 
 class ReminderFeatureTest(unittest.TestCase):
@@ -14,8 +14,15 @@ class ReminderFeatureTest(unittest.TestCase):
         with self.app.app_context():
             db.drop_all()
             db.create_all()
+            ensure_default_users()
 
     def test_caregiver_can_add_patient_reminder(self):
+        self.client.post(
+            "/login",
+            data={"username": "caregiver", "password": "caregiver123"},
+            follow_redirects=True,
+        )
+
         response = self.client.post(
             "/caregiver/reminder/add",
             data={

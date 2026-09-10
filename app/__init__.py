@@ -43,5 +43,6 @@ def create_app():
     with app.app_context():
         from app import models  # noqa: F401
         db.create_all()
+        models.ensure_default_users()
 
     return app
