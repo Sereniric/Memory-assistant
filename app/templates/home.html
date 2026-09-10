@@ -46,6 +46,15 @@
                     📋 Open Patient Dashboard
                 </a>
             </div>
+
+            <div class="sos-panel">
+                <p class="sos-label">Need urgent help?</p>
+                <a class="sos-button" href="{{ url_for('main.sos_confirm') }}">
+                    <span class="sos-icon" aria-hidden="true">!</span>
+                    <span>Emergency SOS</span>
+                </a>
+                <p class="sos-help">Starts a 10-second countdown before alerting your saved family member.</p>
+            </div>
         </div>
     </main>
 
