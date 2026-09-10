@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Result</title>
+    <title>{{ t('games.page_title') }}</title>
 
     <link
         rel="stylesheet"
@@ -22,39 +22,38 @@
             {% if accuracy >= 80 %}
 
                 <h1 class="game-title">
-                     Great Job!
+                    {{ t('games.good_job') }}
                 </h1>
 
             {% elif accuracy >= 50 %}
 
                 <h1 class="game-title">
-                     Good Try!
+                    {{ t('games.good_try') }}
                 </h1>
 
             {% else %}
 
                 <h1 class="game-title">
-                     Keep Practicing!
+                    {{ t('games.keep_practicing') }}
                 </h1>
 
             {% endif %}
-
 
             <div class="result-score">
                 {{ correct }}/{{ sequence|length }}
             </div>
 
             <p class="result-message">
-                Accuracy: {{ "%.0f"|format(accuracy) }}%
+                {{ t('games.accuracy') }}: {{ "%.0f"|format(accuracy) }}%
             </p>
 
             <p>
-                Current difficulty:
+                {{ t('games.current_difficulty') }}:
                 <strong>{{ difficulty|upper }}</strong>
             </p>
 
             <p>
-                Next difficulty:
+                {{ t('games.next_difficulty') }}:
                 <strong>{{ new_difficulty|upper }}</strong>
             </p>
 
@@ -64,13 +63,13 @@
                 href="{{ url_for('games.remember') }}"
                 class="btn"
             >
-                Next Round
+                {{ t('games.next_round') }}
             </a>
 
             <br>
 
             <a href="{{ url_for('results.history') }}">
-                View Game Results
+                {{ t('games.view_results') }}
             </a>
 
         </section>

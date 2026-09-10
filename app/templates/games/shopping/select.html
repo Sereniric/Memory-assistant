@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Shopping Memory - Select</title>
+    <title>{{ t('games.shopping_title') }}</title>
 
     <link
         rel="stylesheet"
@@ -23,21 +23,21 @@
         <section class="game-card">
 
             <h1 class="game-title">
-                🛒 Which Items Do You Remember?
+                🛒 {{ t('games.recall_select_title') }}
             </h1>
 
             <p class="game-subtitle">
-                Select all the items you saw.
+                {{ t('games.recall_select_hint') }}
             </p>
 
             <div class="status">
 
                 <span>
-                    Level: {{ level }}
+                    {{ t('games.level') }}: {{ level }}
                 </span>
 
                 <span>
-                    Score: {{ score }}
+                    {{ t('games.score') }}: {{ score }}
                 </span>
 
                 <span>
@@ -79,7 +79,7 @@
                     type="submit"
                     class="btn"
                 >
-                    Submit Answer
+                    {{ t('games.submit_answer') }}
                 </button>
 
             </form>

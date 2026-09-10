@@ -22,6 +22,9 @@ class VoiceInputTest(unittest.TestCase):
     ):
         transcribe_audio.return_value = "four eight two"
 
+        with self.client.session_transaction() as session:
+            session["lang"] = "en"
+
         response = self.client.post(
             "/game/voice",
             data={

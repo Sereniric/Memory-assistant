@@ -1,8 +1,9 @@
 import os
 
-from flask import Flask
+from flask import Flask, redirect, request, session, url_for
 
 from app.extensions import db
+from app.localization import get_active_language, translate_text
 
 
 def create_app():
@@ -15,6 +16,31 @@ def create_app():
         app.instance_path, "dementia_care.db"
     )
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    @app.before_request
+    def set_default_language():
+        session.setdefault("lang", "as")
+        session["lang"] = get_active_language(session.get("lang"))
+
+    @app.context_processor
+    def inject_translation_helpers():
+        def t(key, **kwargs):
+            text = translate_text(key, session.get("lang", "as"))
+            for placeholder, value in kwargs.items():
+                text = text.replace(f"{{{{{placeholder}}}}}", str(value))
+            return text
+
+        return {
+            "t": t,
+            "current_lang": get_active_language(session.get("lang", "as")),
+            "session": session,
+        }
+
+    @app.route("/set_language/<lang>", methods=["POST"])
+    def set_language(lang):
+        if lang in {"en", "as"}:
+            session["lang"] = lang
+        return redirect(request.referrer or url_for("main.home"))
 
     db.init_app(app)
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caregiver Dashboard | SIH 26003</title>
+    <title>{{ t('caregiver.title') }} | SIH 26003</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="dashboard-page">
@@ -11,40 +11,40 @@
         <header class="dashboard-header">
             <div>
                 <p class="eyebrow">SIH 26003</p>
-                <h1>Caregiver dashboard</h1>
-                <p class="dashboard-intro">A simple view of recent memory activity and progress.</p>
+                <h1>{{ t('caregiver.title') }}</h1>
+                <p class="dashboard-intro">{{ t('caregiver.intro') }}</p>
             </div>
             <div class="dashboard-header-actions">
-                <a class="text-link" href="{{ url_for('patient.index') }}">Patient dashboard</a>
-                <a class="text-link" href="{{ url_for('main.home') }}">Back to home</a>
+                <a class="text-link" href="{{ url_for('patient.index') }}">{{ t('caregiver.patient_dashboard') }}</a>
+                <a class="text-link" href="{{ url_for('main.home') }}">{{ t('caregiver.home') }}</a>
             </div>
         </header>
 
         <section class="summary-grid" aria-label="Progress summary">
             <article class="summary-card summary-card-blue">
-                <span class="summary-label">Games completed</span>
+                <span class="summary-label">{{ t('caregiver.summary_games') }}</span>
                 <strong>{{ total_games }}</strong>
-                <span class="summary-note">Recorded in this session</span>
+                <span class="summary-note">{{ t('caregiver.summary_games_note') }}</span>
             </article>
             <article class="summary-card summary-card-yellow">
-                <span class="summary-label">Average accuracy</span>
+                <span class="summary-label">{{ t('caregiver.summary_accuracy') }}</span>
                 <strong>{{ average_accuracy }}%</strong>
-                <span class="summary-note">Across recorded rounds</span>
+                <span class="summary-note">{{ t('caregiver.summary_accuracy_note') }}</span>
             </article>
             <article class="summary-card summary-card-green">
-                <span class="summary-label">Current level</span>
+                <span class="summary-label">{{ t('caregiver.summary_level') }}</span>
                 <strong>{{ current_difficulty }}</strong>
-                <span class="summary-note">Next sequence difficulty</span>
+                <span class="summary-note">{{ t('caregiver.summary_level_note') }}</span>
             </article>
         </section>
 
         <section class="dashboard-section">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Care plan</p>
-                    <h2>Scheduled reminders</h2>
+                    <p class="eyebrow">{{ t('caregiver.care_plan') }}</p>
+                    <h2>{{ t('caregiver.reminders') }}</h2>
                 </div>
-                <span class="activity-count">{{ reminders|length }} total</span>
+                <span class="activity-count">{{ reminders|length }} {{ t('caregiver.reminders_total') }}</span>
             </div>
 
             {% if reminders %}
@@ -52,17 +52,17 @@
                 <table class="activity-table">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Day</th>
-                            <th>Time</th>
-                            <th>Message</th>
+                            <th>{{ t('caregiver.reminder_title') }}</th>
+                            <th>{{ t('caregiver.reminder_day') }}</th>
+                            <th>{{ t('caregiver.reminder_time') }}</th>
+                            <th>{{ t('caregiver.reminder_message') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for reminder in reminders %}
                         <tr>
                             <td><strong>{{ reminder.title }}</strong></td>
-                            <td>{{ reminder.day or "Any day" }}</td>
+                            <td>{{ reminder.day or t('caregiver.any_day') }}</td>
                             <td>{{ reminder.time or "—" }}</td>
                             <td>{{ reminder.message or "—" }}</td>
                         </tr>
@@ -72,21 +72,21 @@
             </div>
             {% else %}
             <div class="empty-state">
-                <h3>No reminders yet</h3>
-                <p>Add a reminder to help the patient follow their care routine.</p>
+                <h3>{{ t('caregiver.no_reminders') }}</h3>
+                <p>{{ t('caregiver.reminder_help') }}</p>
             </div>
             {% endif %}
 
-            <a class="dashboard-button" href="{{ url_for('caregiver.add_reminder') }}">+ Add Reminder</a>
+            <a class="dashboard-button" href="{{ url_for('caregiver.add_reminder') }}">{{ t('caregiver.add_reminder') }}</a>
         </section>
 
         <section class="dashboard-section">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Progress log</p>
-                    <h2>Recent activity</h2>
+                    <p class="eyebrow">{{ t('caregiver.progress_log') }}</p>
+                    <h2>{{ t('caregiver.recent_activity') }}</h2>
                 </div>
-                <span class="activity-count">{{ activities|length }} shown</span>
+                <span class="activity-count">{{ activities|length }} {{ t('caregiver.activity_shown') }}</span>
             </div>
 
             {% if activities %}
@@ -94,10 +94,10 @@
                 <table class="activity-table">
                     <thead>
                         <tr>
-                            <th>Activity</th>
-                            <th>Result</th>
-                            <th>Accuracy</th>
-                            <th>Difficulty</th>
+                            <th>{{ t('caregiver.activity') }}</th>
+                            <th>{{ t('caregiver.result') }}</th>
+                            <th>{{ t('caregiver.activity_accuracy') }}</th>
+                            <th>{{ t('caregiver.activity_difficulty') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,19 +114,19 @@
             </div>
             {% else %}
             <div class="empty-state">
-                <h3>No activity yet</h3>
-                <p>Start a memory game to see the player's progress here.</p>
-                <a class="dashboard-button" href="{{ url_for('games.start') }}">Start a game</a>
+                <h3>{{ t('caregiver.no_activity') }}</h3>
+                <p>{{ t('caregiver.no_activity_help') }}</p>
+                <a class="dashboard-button" href="{{ url_for('games.start') }}">{{ t('caregiver.start_game') }}</a>
             </div>
             {% endif %}
         </section>
 
         <section class="caregiver-note">
             <div>
-                <p class="eyebrow">Next step</p>
-                <h2>Keep practice regular and comfortable.</h2>
+                <p class="eyebrow">{{ t('caregiver.next_step') }}</p>
+                <h2>{{ t('caregiver.keep_practice') }}</h2>
             </div>
-            <p>This MVP records activity for the current browser session. Persistent profiles and shared caregiver access can be added with the planned database.</p>
+            <p>{{ t('caregiver.note') }}</p>
         </section>
     </main>
 </body>

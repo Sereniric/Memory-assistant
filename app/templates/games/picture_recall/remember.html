@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picture Recall - Remember</title>
+    <title>{{ t('games.picture_title') }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
 </head>
 
 <body>
     <main class="game-container">
         <section class="game-card">
-            <h1 class="game-title">🖼️ Remember These Pictures</h1>
-            <p class="game-subtitle">Memorize the picture cards below. Level: {{ level }}</p>
+            <h1 class="game-title">🖼️ {{ t('games.picture_remember_title') }}</h1>
+            <p class="game-subtitle">{{ t('games.picture_remember_hint') }} {{ t('games.level') }}: {{ level }}</p>
 
             <div class="item-grid">
                 {% for item in items %}
@@ -22,7 +22,7 @@
                 {% endfor %}
             </div>
 
-            <a href="{{ url_for('picture_recall.select') }}" class="btn">I'm Ready</a>
+            <a href="{{ url_for('picture_recall.select') }}" class="btn">{{ t('games.ready') }}</a>
         </section>
     </main>
 </body>

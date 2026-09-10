@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picture Recall - Result</title>
+    <title>{{ t('games.picture_title') }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
 </head>
 
@@ -12,30 +12,30 @@
     <main class="game-container">
         <section class="game-card">
             {% if game_over %}
-                <h1 class="game-title">💔 Game Over</h1>
+                <h1 class="game-title">💔 {{ t('games.game_over') }}</h1>
             {% elif result == "correct" %}
-                <h1 class="game-title">🎉 Correct!</h1>
+                <h1 class="game-title">🎉 {{ t('games.correct') }}</h1>
             {% else %}
-                <h1 class="game-title">❌ Not Quite</h1>
+                <h1 class="game-title">❌ {{ t('games.not_quite') }}</h1>
             {% endif %}
 
             <div class="status">
-                <span>Level: {{ level }}</span>
-                <span>Score: {{ score }}</span>
+                <span>{{ t('games.level') }}: {{ level }}</span>
+                <span>{{ t('games.score') }}: {{ score }}</span>
                 <span>❤️ {{ lives }}</span>
             </div>
 
             {% if result == "correct" %}
-                <p class="result-message">You earned {{ points }} points!</p>
+                <p class="result-message">{{ t('games.earned_points_prefix') }} {{ points }} {{ t('games.points_suffix') }}</p>
             {% endif %}
 
             <br>
 
             {% if game_over %}
-                <a href="{{ url_for('picture_recall.start') }}" class="btn">Play Again</a>
+                <a href="{{ url_for('picture_recall.start') }}" class="btn">{{ t('games.play_again') }}</a>
             {% else %}
                 <form method="POST" action="{{ url_for('picture_recall.next_round') }}">
-                    <button type="submit" class="btn">Next Round</button>
+                    <button type="submit" class="btn">{{ t('games.next_round') }}</button>
                 </form>
             {% endif %}
         </section>

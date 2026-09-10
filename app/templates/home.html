@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MemoryCare — Support for Dementia Patients</title>
+    <title>MemoryCare — {{ t('home.eyebrow') }}</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
@@ -17,33 +17,36 @@
             <a class="site-logo" href="{{ url_for('main.home') }}">🧠 MemoryCare</a>
 
             <nav class="site-nav">
-                <a href="{{ url_for('games.start') }}">Cognitive Games</a>
-                <a href="{{ url_for('patient.index') }}">Patient Dashboard</a>
-                <a href="{{ url_for('caregiver.dashboard') }}">Caregiver Dashboard</a>
+                <a href="{{ url_for('games.start') }}">{{ t('nav.games') }}</a>
+                <a href="{{ url_for('patient.index') }}">{{ t('nav.patient_dashboard') }}</a>
+                <a href="{{ url_for('caregiver.dashboard') }}">{{ t('nav.caregiver_dashboard') }}</a>
             </nav>
+
+            <form method="POST" action="{{ url_for('set_language', lang='as') }}" style="display:inline; margin-left:1rem;">
+                <button type="submit" class="btn-secondary-outline" style="padding:0.4rem 0.7rem;">অসমীয়া</button>
+            </form>
+            <form method="POST" action="{{ url_for('set_language', lang='en') }}" style="display:inline; margin-left:0.5rem;">
+                <button type="submit" class="btn-secondary-outline" style="padding:0.4rem 0.7rem;">English</button>
+            </form>
         </div>
     </header>
 
     <main class="hero">
         <div class="hero-inner">
-            <p class="eyebrow">Support for people living with dementia</p>
+            <p class="eyebrow">{{ t('home.eyebrow') }}</p>
 
-            <h1>Gentle cognitive care, every day.</h1>
+            <h1>{{ t('home.hero_heading') }}</h1>
 
             <p class="hero-subtitle">
-                MemoryCare is a simple, elderly-friendly platform that helps people
-                with dementia stay mentally active through easy, adaptive memory
-                games — while giving caregivers a clear view of the patient's
-                profile, medicines, health conditions, and daily progress, all in
-                one calm and uncluttered place.
+                {{ t('home.hero_subtitle') }}
             </p>
 
             <div class="hero-actions">
                 <a class="btn-primary" href="{{ url_for('games.start') }}">
-                    🧠 Play a Memory Game
+                    🧠 {{ t('home.play_game') }}
                 </a>
                 <a class="btn-secondary-outline" href="{{ url_for('patient.index') }}">
-                    📋 Open Patient Dashboard
+                    📋 {{ t('home.open_dashboard') }}
                 </a>
             </div>
         </div>
@@ -54,41 +57,36 @@
 
             <article class="feature-card">
                 <div class="feature-icon">🧠</div>
-                <h2>Cognitive Games</h2>
+                <h2>{{ t('home.feature_games') }}</h2>
                 <p>
-                    Sequence Recall, Shopping Memory, and Picture Recall gently
-                    adapt in difficulty to keep practice encouraging and never
-                    overwhelming.
+                    {{ t('home.feature_games_desc') }}
                 </p>
-                <a class="text-link" href="{{ url_for('games.start') }}">Play now →</a>
+                <a class="text-link" href="{{ url_for('games.start') }}">{{ t('home.play_now') }}</a>
             </article>
 
             <article class="feature-card">
                 <div class="feature-icon">📋</div>
-                <h2>Patient Dashboard</h2>
+                <h2>{{ t('home.feature_dashboard') }}</h2>
                 <p>
-                    Keep the patient's profile, medicines, and health conditions
-                    organized in one place that's easy for family members and
-                    caregivers to check.
+                    {{ t('home.feature_dashboard_desc') }}
                 </p>
-                <a class="text-link" href="{{ url_for('patient.index') }}">View dashboard →</a>
+                <a class="text-link" href="{{ url_for('patient.index') }}">{{ t('home.view_dashboard') }}</a>
             </article>
 
             <article class="feature-card">
                 <div class="feature-icon">❤️</div>
-                <h2>Caregiver Insights</h2>
+                <h2>{{ t('home.feature_activity') }}</h2>
                 <p>
-                    See recent game activity and accuracy trends so caregivers
-                    can notice changes early and celebrate every bit of progress.
+                    {{ t('home.feature_activity_desc') }}
                 </p>
-                <a class="text-link" href="{{ url_for('caregiver.dashboard') }}">View activity →</a>
+                <a class="text-link" href="{{ url_for('caregiver.dashboard') }}">{{ t('home.view_activity') }}</a>
             </article>
 
         </div>
     </section>
 
     <footer class="site-footer">
-        <p>Built for SIH 26003 — Cognitive Gaming and Memory Assistance Platform.</p>
+        <p>{{ t('home.footer') }}</p>
     </footer>
 
 </body>

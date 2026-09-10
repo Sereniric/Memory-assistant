@@ -1,0 +1,81 @@
+I want to localize our EXISTING Flask MVP for elderly users in Assam/NER.
+
+IMPORTANT:
+
+* Do NOT redesign or rebuild the project.
+* Do NOT change the existing game logic/evaluation.
+* Do NOT add JavaScript.
+* Do NOT add Text-to-Speech.
+* Do NOT translate/localize the actual game data, game items, sequences, or answers.
+* The cognitive game content must remain exactly as it currently works.
+* Do NOT add an AI chatbot or unnecessary AI features.
+
+GOAL:
+Make the overall MVP interface and user instructions available in Assamese, while keeping the actual cognitive game content/answers unchanged.
+
+Localize only:
+
+* Main navigation
+* Home/dashboard text
+* Game selection page
+* Buttons
+* Labels
+* Headings
+* Instructions explaining how to play
+* Start/Next/Submit/Retry/Back controls
+* Score/result explanations
+* Difficulty/progress labels
+* Error/validation messages
+* General accessibility/help text
+* Any other normal application UI text
+
+Do NOT localize:
+
+* Sequence Recall numbers/answers
+* Shopping Memory item data
+* Game-generated sequences
+* Internal game logic
+* Python variable/function names
+* Database fields
+* Routes/API endpoints
+* Game evaluation rules
+
+IMPLEMENTATION:
+
+1. First inspect the complete existing repository.
+2. Identify every user-facing UI string.
+3. Create a simple localization structure, preferably:
+   translations/
+   en.json
+   as.json
+4. Use a language setting such as `en` / `as` in Flask session.
+5. Add a simple language selector to the existing UI.
+6. Make Assamese the default language for the MVP if appropriate, while keeping English available as a fallback.
+7. Use Jinja2 to retrieve translated UI strings instead of hardcoding translations throughout Python/HTML.
+8. Keep the existing Flask + Jinja2 + HTML/CSS architecture.
+9. Do not introduce JavaScript.
+10. Do not add TTS or speech output.
+11. Do not modify working game evaluation unless absolutely necessary for localization.
+
+IMPORTANT UX:
+The Assamese translation should be natural and easy for elderly users to understand. Avoid overly technical Assamese wording. Keep buttons and instructions short, clear, and readable.
+
+BEFORE CODING:
+Give me a short list of:
+
+* Files you will modify
+* Files you will create
+* What will remain untouched
+* How the language system will work
+
+Then implement it incrementally.
+
+After implementation, verify that:
+
+* English still works.
+* Assamese UI works.
+* Both games still work exactly as before.
+* Scores/evaluation are unchanged.
+* No JavaScript was added.
+* No Text-to-Speech was added.
+* Game data/content was not translated.

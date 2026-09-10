@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Sequence Recall</title>
+    <title>{{ t('games.sequence_intro_title') }}</title>
 
     <link
         rel="stylesheet"
@@ -24,24 +24,21 @@
         <section class="game-card">
 
             <h1 class="game-title">
-                🧠 Sequence Recall
+                🧠 {{ t('games.sequence_intro_title') }}
             </h1>
 
             <p class="game-subtitle">
-                Test your memory by remembering the
-                sequence in the correct order.
+                {{ t('games.sequence_intro_subtitle') }}
             </p>
 
             <div class="game-option">
 
                 <h2>
-                    How to Play
+                    {{ t('games.sequence_how') }}
                 </h2>
 
                 <p>
-                    A sequence will appear on the screen.
-                    Remember it carefully, then reproduce
-                    it in the correct order.
+                    {{ t('games.sequence_how_text') }}
                 </p>
 
             </div>
@@ -49,12 +46,11 @@
             <div class="game-option">
 
                 <h2>
-                    🎯 Your Goal
+                    🎯 {{ t('games.sequence_goal') }}
                 </h2>
 
                 <p>
-                    Remember longer sequences as you
-                    progress through the levels.
+                    {{ t('games.sequence_goal_text') }}
                 </p>
 
             </div>
@@ -63,7 +59,7 @@
                 href="{{ url_for('games.remember') }}"
                 class="btn"
             >
-                Start Game
+                {{ t('games.start') }}
             </a>
 
             <br>
@@ -72,7 +68,7 @@
                 href="{{ url_for('games.start') }}"
                 class="back-link"
             >
-                ← Back to Games
+                {{ t('games.sequence_back') }}
             </a>
 
         </section>

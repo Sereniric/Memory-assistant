@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Cognitive Games</title>
+    <title>{{ t('games.page_title') }}</title>
 
     <link
         rel="stylesheet"
@@ -23,85 +23,79 @@
         <section class="game-card">
 
             <h1 class="game-title">
-                🧠 Cognitive Games
+                🧠 {{ t('games.page_title') }}
             </h1>
 
             <p class="game-subtitle">
-                Choose a game to challenge your memory.
+                {{ t('games.subtitle') }}
             </p>
 
             <p>
                 <a href="{{ url_for('results.history') }}">
-                    View Game Results
+                    {{ t('games.view_results') }}
                 </a>
             </p>
 
-
-            <!-- Sequence Recall -->
+            <form method="POST" action="{{ url_for('set_language', lang='as') }}" style="margin-bottom:1rem;">
+                <button type="submit" class="btn-secondary-outline">অসমীয়া</button>
+                <button type="submit" formaction="{{ url_for('set_language', lang='en') }}" class="btn-secondary-outline">English</button>
+            </form>
 
             <div class="game-option">
 
-                <h2>🧠 Sequence Recall</h2>
+                <h2>🧠 {{ t('games.sequence_title') }}</h2>
 
                 <p>
-                    Remember a sequence and reproduce it
-                    in the correct order.
+                    {{ t('games.sequence_desc') }}
                 </p>
 
                 <a
                     href="{{ url_for('sequence_recall.intro') }}"
                     class="btn"
                 >
-                    Play Sequence Recall
+                    {{ t('games.sequence_button') }}
                 </a>
 
             </div>
 
-
-            <!-- Shopping Memory -->
-
             <div class="game-option">
 
-                <h2>🛒 Shopping Memory</h2>
+                <h2>🛒 {{ t('games.shopping_title') }}</h2>
 
                 <p>
-                    Remember the items on a shopping list
-                    and select them from a larger list.
+                    {{ t('games.shopping_desc') }}
                 </p>
 
                 <a
                     href="{{ url_for('shopping_memory.start') }}"
                     class="btn"
                 >
-                    Play Shopping Memory
+                    {{ t('games.shopping_button') }}
                 </a>
 
             </div>
 
-            <!-- Picture Recall -->
-
             <div class="game-option">
 
-                <h2>🖼️ Picture Recall</h2>
+                <h2>🖼️ {{ t('games.picture_title') }}</h2>
 
                 <p>
-                    Memorize a set of picture cards and select
-                    the ones you remember from a larger set.
+                    {{ t('games.picture_desc') }}
                 </p>
 
                 <a
                     href="{{ url_for('picture_recall.start') }}"
                     class="btn"
                 >
-                    Play Picture Recall
+                    {{ t('games.picture_button') }}
                 </a>
 
             </div>
 
             <div class="hub-links">
-                <a href="{{ url_for('main.home') }}" class="back-link">🏠 Home</a>
-                <a href="{{ url_for('patient.index') }}" class="back-link">📋 Patient Dashboard</a>
-                <a href="{{ url_for('caregiver.dashboard') }}" class="back-link">❤️ Caregiver Dashboard</a>
+                <a href="{{ url_for('main.home') }}" class="back-link">🏠 {{ t('nav.home') }}</a>
+                <a href="{{ url_for('patient.index') }}" class="back-link">📋 {{ t('nav.patient_dashboard_short') }}</a>
+                <a href="{{ url_for('caregiver.dashboard') }}" class="back-link">❤️ {{ t('nav.caregiver_dashboard_short') }}</a>
             </div>
 
         </section>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Shopping Memory - Result</title>
+    <title>{{ t('games.shopping_title') }}</title>
 
     <link
         rel="stylesheet"
@@ -25,19 +25,19 @@
             {% if game_over %}
 
                 <h1 class="game-title">
-                    💔 Game Over
+                    💔 {{ t('games.game_over') }}
                 </h1>
 
             {% elif result == "correct" %}
 
                 <h1 class="game-title">
-                    🎉 Correct!
+                    🎉 {{ t('games.correct') }}
                 </h1>
 
             {% else %}
 
                 <h1 class="game-title">
-                    ❌ Not Quite
+                    ❌ {{ t('games.not_quite') }}
                 </h1>
 
             {% endif %}
@@ -45,11 +45,11 @@
             <div class="status">
 
                 <span>
-                    Level: {{ level }}
+                    {{ t('games.level') }}: {{ level }}
                 </span>
 
                 <span>
-                    Score: {{ score }}
+                    {{ t('games.score') }}: {{ score }}
                 </span>
 
                 <span>
@@ -61,7 +61,7 @@
             {% if result == "correct" %}
 
                 <p class="result-message">
-                    You earned {{ points }} points!
+                    {{ t('games.earned_points_prefix') }} {{ points }} {{ t('games.points_suffix') }}
                 </p>
 
             {% endif %}
@@ -74,7 +74,7 @@
                     href="{{ url_for('shopping_memory.start') }}"
                     class="btn"
                 >
-                    Play Again
+                    {{ t('games.play_again') }}
                 </a>
 
             {% else %}
@@ -88,7 +88,7 @@
                         type="submit"
                         class="btn"
                     >
-                        Next Round
+                        {{ t('games.next_round') }}
                     </button>
 
                 </form>

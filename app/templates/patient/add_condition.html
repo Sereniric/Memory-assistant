@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Condition | SIH 26003</title>
+    <title>{{ t('patient.condition') }} | SIH 26003</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="dashboard-page">
@@ -11,11 +11,11 @@
 
         <header class="dashboard-header">
             <div>
-                <p class="eyebrow">Health record</p>
-                <h1>🩺 Add Condition</h1>
-                <p class="dashboard-intro">Record a health condition for {{ patient.name }}.</p>
+                <p class="eyebrow">{{ t('patient.health_record') }}</p>
+                <h1>🩺 {{ t('patient.condition') }}</h1>
+                <p class="dashboard-intro">{{ t('patient.conditions_help') }}</p>
             </div>
-            <a class="text-link" href="{{ url_for('patient.index') }}">Cancel</a>
+            <a class="text-link" href="{{ url_for('patient.index') }}">{{ t('caregiver.cancel') }}</a>
         </header>
 
         <section class="dashboard-section">
@@ -23,33 +23,33 @@
 
                 <div class="form-grid">
                     <div class="form-field">
-                        <label for="name">Condition name</label>
-                        <input type="text" id="name" name="name" placeholder="e.g. Hypertension" required>
+                        <label for="name">{{ t('patient.condition_name') }}</label>
+                        <input type="text" id="name" name="name" placeholder="{{ t('patient.condition_placeholder') }}" required>
                     </div>
 
                     <div class="form-field">
-                        <label for="status">Status</label>
+                        <label for="status">{{ t('patient.status_label') }}</label>
                         <select id="status" name="status">
-                            <option value="active">Active</option>
-                            <option value="managed">Managed</option>
-                            <option value="resolved">Resolved</option>
+                            <option value="active">{{ t('patient.active') }}</option>
+                            <option value="managed">{{ t('patient.managed') }}</option>
+                            <option value="resolved">{{ t('patient.resolved') }}</option>
                         </select>
                     </div>
 
                     <div class="form-field">
-                        <label for="diagnosed_date">Diagnosed on</label>
+                        <label for="diagnosed_date">{{ t('patient.diagnosed_on') }}</label>
                         <input type="date" id="diagnosed_date" name="diagnosed_date">
                     </div>
 
                     <div class="form-field full-width">
-                        <label for="notes">Notes</label>
-                        <textarea id="notes" name="notes" placeholder="Any details caregivers should know about this condition"></textarea>
+                        <label for="notes">{{ t('patient.notes_label') }}</label>
+                        <textarea id="notes" name="notes" placeholder="{{ t('patient.default_condition_note') }}"></textarea>
                     </div>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save Condition</button>
-                    <a class="btn-secondary" href="{{ url_for('patient.index') }}">Cancel</a>
+                    <button type="submit" class="btn-primary">{{ t('patient.save_condition') }}</button>
+                    <a class="btn-secondary" href="{{ url_for('patient.index') }}">{{ t('caregiver.cancel') }}</a>
                 </div>
 
             </form>

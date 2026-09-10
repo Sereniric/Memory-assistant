@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Your Answer</title>
+    <title>{{ t('games.answer_title') }}</title>
 
     <link
         rel="stylesheet"
@@ -20,11 +20,11 @@
         <section class="game-card">
 
             <h1 class="game-title">
-                What Was the Sequence?
+                {{ t('games.answer_title') }}
             </h1>
 
             <p class="game-subtitle">
-                Enter the numbers in the same order.
+                {{ t('games.answer_subtitle') }}
             </p>
 
             <form
@@ -37,7 +37,7 @@
                     type="text"
                     name="answer"
                     class="answer-input"
-                    placeholder="Example: 4 8 2"
+                    placeholder="{{ t('games.answer_placeholder') }}"
                     autocomplete="off"
                     required
                 >
@@ -48,7 +48,7 @@
                     type="submit"
                     class="btn"
                 >
-                    Submit Answer
+                    {{ t('games.submit_answer') }}
                 </button>
 
             </form>
@@ -56,7 +56,7 @@
             <div
                 class="voice-input"
             >
-                <h2>Or speak your answer</h2>
+                <h2>{{ t('games.or_speak') }}</h2>
 
                 <form
                     method="POST"
@@ -76,7 +76,7 @@
                         type="submit"
                         class="btn voice-button"
                     >
-                        🎙 Upload Voice Answer
+                        🎙 {{ t('games.record_audio') }}
                     </button>
 
                 </form>
@@ -88,7 +88,7 @@
                 {% if voice_transcript %}
                     <div class="voice-confirmation">
                         <p>
-                            You said:
+                            {{ t('games.voice_you_said') }}
                             <strong>{{ voice_transcript }}</strong>
                         </p>
 
@@ -103,14 +103,14 @@
                             >
 
                             <button type="submit" class="btn">
-                                Use Answer
+                                {{ t('games.use_answer') }}
                             </button>
 
                             <a
                                 href="{{ url_for('games.answer') }}"
                                 class="voice-retry"
                             >
-                                Try Again
+                                {{ t('games.try_again') }}
                             </a>
                         </form>
                     </div>

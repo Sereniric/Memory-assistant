@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Patient Details | SIH 26003</title>
+    <title>{{ t('patient.edit_title') }} | SIH 26003</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="dashboard-page">
@@ -11,11 +11,11 @@
 
         <header class="dashboard-header">
             <div>
-                <p class="eyebrow">Patient Profile</p>
-                <h1>Edit Patient Details</h1>
-                <p class="dashboard-intro">Keep the patient's core information accurate and up to date.</p>
+                <p class="eyebrow">{{ t('patient.profile') }}</p>
+                <h1>{{ t('patient.edit_title') }}</h1>
+                <p class="dashboard-intro">{{ t('patient.keep_info') }}</p>
             </div>
-            <a class="text-link" href="{{ url_for('patient.index') }}">Cancel</a>
+            <a class="text-link" href="{{ url_for('patient.index') }}">{{ t('caregiver.cancel') }}</a>
         </header>
 
         <section class="dashboard-section">
@@ -23,58 +23,58 @@
 
                 <div class="form-grid">
                     <div class="form-field">
-                        <label for="name">Full name</label>
+                        <label for="name">{{ t('patient.full_name') }}</label>
                         <input type="text" id="name" name="name" value="{{ patient.name }}" required>
                     </div>
 
                     <div class="form-field">
-                        <label for="age">Age</label>
+                        <label for="age">{{ t('patient.age') }}</label>
                         <input type="number" id="age" name="age" min="0" max="130" value="{{ patient.age or '' }}">
                     </div>
 
                     <div class="form-field">
-                        <label for="gender">Gender</label>
-                        <input type="text" id="gender" name="gender" value="{{ patient.gender or '' }}" placeholder="e.g. Female">
+                        <label for="gender">{{ t('patient.gender') }}</label>
+                        <input type="text" id="gender" name="gender" value="{{ patient.gender or '' }}" placeholder="{{ t('patient.default_gender_placeholder') }}">
                     </div>
 
                     <div class="form-field">
-                        <label for="dementia_stage">Dementia stage</label>
+                        <label for="dementia_stage">{{ t('patient.dementia_stage_label') }}</label>
                         <select id="dementia_stage" name="dementia_stage">
-                            <option value="mild" {% if patient.dementia_stage == "mild" %}selected{% endif %}>Mild</option>
-                            <option value="moderate" {% if patient.dementia_stage == "moderate" %}selected{% endif %}>Moderate</option>
-                            <option value="severe" {% if patient.dementia_stage == "severe" %}selected{% endif %}>Severe</option>
+                            <option value="mild" {% if patient.dementia_stage == "mild" %}selected{% endif %}>{{ t('patient.mild') }}</option>
+                            <option value="moderate" {% if patient.dementia_stage == "moderate" %}selected{% endif %}>{{ t('patient.moderate') }}</option>
+                            <option value="severe" {% if patient.dementia_stage == "severe" %}selected{% endif %}>{{ t('patient.severe') }}</option>
                         </select>
                     </div>
 
                     <div class="form-field">
-                        <label for="diagnosis_date">Diagnosis date</label>
+                        <label for="diagnosis_date">{{ t('patient.diagnosis_date_label') }}</label>
                         <input type="date" id="diagnosis_date" name="diagnosis_date" value="{{ patient.diagnosis_date or '' }}">
                     </div>
 
                     <div class="form-field">
-                        <label for="caregiver_name">Primary caregiver</label>
-                        <input type="text" id="caregiver_name" name="caregiver_name" value="{{ patient.caregiver_name or '' }}" placeholder="e.g. Priya Sharma">
+                        <label for="caregiver_name">{{ t('patient.caregiver_name') }}</label>
+                        <input type="text" id="caregiver_name" name="caregiver_name" value="{{ patient.caregiver_name or '' }}" placeholder="{{ t('patient.default_caregiver_placeholder') }}">
                     </div>
 
                     <div class="form-field">
-                        <label for="caregiver_phone">Caregiver phone</label>
-                        <input type="text" id="caregiver_phone" name="caregiver_phone" value="{{ patient.caregiver_phone or '' }}" placeholder="e.g. +91 98765 43210">
+                        <label for="caregiver_phone">{{ t('patient.caregiver_phone_label') }}</label>
+                        <input type="text" id="caregiver_phone" name="caregiver_phone" value="{{ patient.caregiver_phone or '' }}" placeholder="{{ t('patient.default_phone_placeholder') }}">
                     </div>
 
                     <div class="form-field">
-                        <label for="emergency_contact">Emergency contact</label>
-                        <input type="text" id="emergency_contact" name="emergency_contact" value="{{ patient.emergency_contact or '' }}" placeholder="Name and phone number">
+                        <label for="emergency_contact">{{ t('patient.emergency_contact_label') }}</label>
+                        <input type="text" id="emergency_contact" name="emergency_contact" value="{{ patient.emergency_contact or '' }}" placeholder="{{ t('patient.default_emergency_placeholder') }}">
                     </div>
 
                     <div class="form-field full-width">
-                        <label for="notes">Additional notes</label>
-                        <textarea id="notes" name="notes" placeholder="Anything else caregivers should know">{{ patient.notes or '' }}</textarea>
+                        <label for="notes">{{ t('patient.additional_notes') }}</label>
+                        <textarea id="notes" name="notes" placeholder="{{ t('patient.default_notes_placeholder') }}">{{ patient.notes or '' }}</textarea>
                     </div>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save Details</button>
-                    <a class="btn-secondary" href="{{ url_for('patient.index') }}">Cancel</a>
+                    <button type="submit" class="btn-primary">{{ t('patient.save_details') }}</button>
+                    <a class="btn-secondary" href="{{ url_for('patient.index') }}">{{ t('caregiver.cancel') }}</a>
                 </div>
 
             </form>

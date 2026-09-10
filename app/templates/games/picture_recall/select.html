@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picture Recall - Select</title>
+    <title>{{ t('games.picture_title') }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
 </head>
 
 <body>
     <main class="game-container">
         <section class="game-card">
-            <h1 class="game-title">🖼️ Which Pictures Do You Remember?</h1>
-            <p class="game-subtitle">Select all the pictures you saw.</p>
+            <h1 class="game-title">🖼️ {{ t('games.picture_select_title') }}</h1>
+            <p class="game-subtitle">{{ t('games.picture_select_hint') }}</p>
 
             <div class="status">
-                <span>Level: {{ level }}</span>
-                <span>Score: {{ score }}</span>
+                <span>{{ t('games.level') }}: {{ level }}</span>
+                <span>{{ t('games.score') }}: {{ score }}</span>
                 <span>❤️ {{ lives }}</span>
             </div>
 
@@ -30,7 +30,7 @@
                     {% endfor %}
                 </div>
 
-                <button type="submit" class="btn">Submit Answer</button>
+                <button type="submit" class="btn">{{ t('games.submit_answer') }}</button>
             </form>
         </section>
     </main>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Results</title>
+    <title>{{ t('games.results_title') }}</title>
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/game.css') }}"
@@ -15,28 +15,28 @@
 
     <main class="game-container">
         <section class="game-card">
-            <h1 class="game-title">Game Results</h1>
+            <h1 class="game-title">{{ t('games.results_title') }}</h1>
 
             {% if results %}
                 {% for result in results|reverse %}
                     <div class="game-option">
                         <h2>{{ result.game }}</h2>
                         <p>
-                            Score: <strong>{{ result.score }}</strong>
-                            | Accuracy: <strong>{{ result.accuracy }}%</strong>
+                            {{ t('games.score_value') }} <strong>{{ result.score }}</strong>
+                            | {{ t('games.accuracy_value') }} <strong>{{ result.accuracy }}%</strong>
                         </p>
                         <p>
-                            Difficulty: {{ result.difficulty }}
-                            | Completed: {{ result.completed_at }}
+                            {{ t('games.difficulty_value') }} {{ result.difficulty }}
+                            | {{ t('games.completed_value') }} {{ result.completed_at }}
                         </p>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No completed games yet.</p>
+                <p>{{ t('games.results_none') }}</p>
             {% endif %}
 
             <a href="{{ url_for('games.start') }}" class="back-link">
-                Back to Games
+                {{ t('nav.back_games') }}
             </a>
         </section>
     </main>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_lang }}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Shopping Memory - Remember</title>
+    <title>{{ t('games.shopping_title') }}</title>
 
     <link
         rel="stylesheet"
@@ -23,11 +23,11 @@
         <section class="game-card">
 
             <h1 class="game-title">
-                🛒 Remember These Items
+                🛒 {{ t('games.recall_remember_title') }}
             </h1>
 
             <p class="game-subtitle">
-                Memorize the shopping list below. Level: {{ level }}
+                {{ t('games.picture_remember_hint') }} {{ t('games.level') }}: {{ level }}
             </p>
 
             <div class="item-grid">
@@ -48,7 +48,7 @@
                 href="{{ url_for('shopping_memory.select') }}"
                 class="btn"
             >
-                I'm Ready
+                {{ t('games.ready') }}
             </a>
 
         </section>
