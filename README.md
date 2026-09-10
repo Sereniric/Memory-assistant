@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 ManasSetu
+# 🧠 ManaSetu
 
 ### <i>Bridging the gap between cognitive wellness and accessibility.</i>
 
@@ -31,11 +31,11 @@
 
 <div align="center">
 
-## 🌉 What is ManasSetu?
+## 🌉 What is ManaSetu?
 
 </div>
 
-**ManasSetu** is a web-based cognitive wellness platform designed to make cognitive activities more **accessible, engaging, and easy to understand**.
+**ManaSetu** is a web-based cognitive wellness platform designed to make cognitive activities more **accessible, engaging, and easy to understand**.
 
 Instead of presenting cognitive activities as conventional tests, ManasSetu uses **simple game-based interactions** to engage users in activities involving memory, recall, attention, and sequence processing.
 
