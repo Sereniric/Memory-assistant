@@ -17,9 +17,17 @@
             <a class="site-logo" href="{{ url_for('main.home') }}">🧠 MemoryCare</a>
 
             <nav class="site-nav">
-                <a href="{{ url_for('games.start') }}">Cognitive Games</a>
-                <a href="{{ url_for('patient.index') }}">Patient Dashboard</a>
-                <a href="{{ url_for('caregiver.dashboard') }}">Caregiver Dashboard</a>
+                {% if session.get('user_role') == 'patient' %}
+                    <a href="{{ url_for('games.start') }}">Cognitive Games</a>
+                {% endif %}
+                {% if session.get('user_role') == 'caregiver' %}
+                    <a href="{{ url_for('caregiver.dashboard') }}">Caregiver Dashboard</a>
+                {% endif %}
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('main.logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('main.login') }}">Login</a>
+                {% endif %}
             </nav>
         </div>
     </header>
@@ -39,12 +47,18 @@
             </p>
 
             <div class="hero-actions">
-                <a class="btn-primary" href="{{ url_for('games.start') }}">
-                    🧠 Play a Memory Game
-                </a>
-                <a class="btn-secondary-outline" href="{{ url_for('patient.index') }}">
-                    📋 Open Patient Dashboard
-                </a>
+                {% if session.get('user_role') == 'patient' %}
+                    <a class="btn-primary" href="{{ url_for('games.start') }}">
+                        🧠 Play a Memory Game
+                    </a>
+                    <a class="btn-secondary-outline" href="{{ url_for('patient.index') }}">
+                        📋 Open Patient Dashboard
+                    </a>
+                {% else %}
+                    <a class="btn-secondary-outline" href="{{ url_for('main.login') }}">
+                        🔐 Login to Continue
+                    </a>
+                {% endif %}
             </div>
 
             <div class="sos-panel">

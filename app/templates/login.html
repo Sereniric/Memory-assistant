@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MemoryCare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+    <main class="dashboard-container auth-container">
+        <section class="dashboard-section auth-card">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">MemoryCare</p>
+                    <h1>Login</h1>
+                </div>
+            </div>
+
+            {% if error %}
+                <div class="empty-state error-state">
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('main.login') }}">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button class="dashboard-button" type="submit">Login</button>
+            </form>
+
+            <div class="auth-help">
+                <p>Demo accounts:</p>
+                <ul>
+                    <li>Patient: username <strong>patient</strong>, password <strong>patient123</strong></li>
+                    <li>Caregiver: username <strong>caregiver</strong>, password <strong>caregiver123</strong></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

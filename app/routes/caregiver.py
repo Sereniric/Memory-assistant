@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
 from app.extensions import db
-from app.models import Reminder, get_patient
+from app.models import Reminder, get_patient, require_roles
 
 
 caregiver = Blueprint(
@@ -12,6 +12,7 @@ caregiver = Blueprint(
 
 
 @caregiver.route("/dashboard")
+@require_roles("caregiver")
 def dashboard():
     patient = get_patient()
     activities = session.get("game_history", [])
@@ -36,6 +37,7 @@ def dashboard():
 
 
 @caregiver.route("/reminder/add", methods=["GET", "POST"])
+@require_roles("caregiver")
 def add_reminder():
     current_patient = get_patient()
 
@@ -62,6 +64,7 @@ def add_reminder():
 
 
 @caregiver.route("/reminders")
+@require_roles("caregiver")
 def list_reminders():
     current_patient = get_patient()
     return render_template(

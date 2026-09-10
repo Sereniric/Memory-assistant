@@ -25,6 +25,8 @@ shopping_memory = Blueprint(
 
 @shopping_memory.route("/")
 def start():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
 
     session["level"] = 1
     session["score"] = 0
@@ -50,6 +52,8 @@ def start():
 
 @shopping_memory.route("/remember")
 def remember():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
 
     if "level" not in session:
         return redirect(
@@ -65,6 +69,8 @@ def remember():
 
 @shopping_memory.route("/select")
 def select():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
 
     if "level" not in session:
         return redirect(
@@ -85,6 +91,8 @@ def select():
     methods=["POST"]
 )
 def submit():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
 
     if "level" not in session:
         return redirect(
@@ -150,6 +158,8 @@ def submit():
 
 @shopping_memory.route("/result")
 def result():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
 
     if "level" not in session:
         return redirect(
@@ -172,6 +182,8 @@ def result():
     methods=["POST"]
 )
 def next_round():
+    if session.get("user_role") != "patient":
+        return redirect(url_for("main.login"))
 
     if "level" not in session:
         return redirect(
